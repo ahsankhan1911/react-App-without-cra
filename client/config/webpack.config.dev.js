@@ -6,12 +6,13 @@ module.exports = {
     mode : 'development',
     entry: './src/index.js',
     output: { path: __dirname , filename: 'bundle.js',
-    // publicPath : 'public'
+    // publicPath : '../public'
 },
 plugins: [
     new HtmlWebpackPlugin({
         title: 'MERN APP',
         hash: true,
+        inject : true,
         template: './public/index.html'
     })
 ],

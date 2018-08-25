@@ -1,5 +1,5 @@
 const config = require('../config/webpack.config.dev');
-const webpack = require('webpack')
+const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
 
@@ -23,6 +23,6 @@ devServer.listen(serverConfig.port, 'localhost', function (error) {
         return console.log(error)
     }
     else {
-        console.log('App is running on 3000')
+        console.log(`App is running on ${serverConfig.port}`)
     }
 })
