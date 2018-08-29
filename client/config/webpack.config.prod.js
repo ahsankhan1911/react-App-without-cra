@@ -1,22 +1,23 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack')
+const fs = require('fs')
+const WriteFilePlugin = require('write-file-webpack-plugin');
+
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 
 module.exports = {
     mode: 'production',
     entry: './src/index.js',
     output: {
-        path: __dirname, filename: 'static/js/bundle.js',
-        // publicPath : '../public'
+        path: resolveApp('build'), filename: 'static/js/main.js',
+        publicPath : './public'
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'MERN APP',
-            hash: true,
-            inject: true,
-            template: './public/index.html'
-        })
-    ],
+    
     module: {
 
         rules: [
@@ -27,14 +28,14 @@ module.exports = {
                 use: [
                     {
                         options: {
-                            formatter: eslintFormatter,
+                           
                             eslintPath: require.resolve('eslint'),
 
                         },
                         loader: require.resolve('eslint-loader'),
                     },
                 ],
-                include: paths.appSrc,
+                include:  resolveApp ('src'),
             },
             {
 
@@ -45,22 +46,18 @@ module.exports = {
                         loader: require.resolve('url-loader'),
                         options: {
                             limit: 10000,
-                            name: 'static/media/[name].[hash:8].[ext]',
+                            name: 'static/images/[name].[hash:8].[ext]',
                         },
                     },
                     // Process JS with Babel.
                     {
                         test: /\.(js|jsx|mjs)$/,
-                        include: paths.appSrc,
+                        include: resolveApp('src'),
                         loader: require.resolve('babel-loader'),
                         options: {
 
                             compact: true,
                         },
-                    },
-                    {
-                        test: /\.twig/,
-                        loader: require.resolve('twig-loader')
                     },
 
                     {
@@ -80,7 +77,7 @@ module.exports = {
                                             options: {
                                                 importLoaders: 1,
                                                 minimize: true,
-                                                sourceMap: shouldUseSourceMap,
+                                                sourceMap: true,
                                             },
                                         },
                                         {
@@ -103,8 +100,7 @@ module.exports = {
                                             },
                                         },
                                     ],
-                                },
-                                extractTextPluginOptions
+                                }
                             )
                         ),
 
@@ -124,4 +120,36 @@ module.exports = {
         ],
 
     }
+    ,
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            inject: true,
+            template: './public/index.html'
+        }),
+
+        new WriteFilePlugin(),
+
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //       warnings: false,
+      
+        //       comparisons: false,
+        //     },
+        //     mangle: {
+        //       safari10: true,
+        //     },
+        //     output: {
+        //       comments: false,
+        //       ascii_only: true,
+        //     },
+        //     sourceMap: true,
+        //   }),
+
+        //   new ExtractTextPlugin({
+        //     filename: 'static/css/style.css',
+        //   }),
+    ],
+
+    
 }

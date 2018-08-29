@@ -1,5 +1,7 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
+
 
 
 module.exports = {
@@ -15,6 +17,9 @@ plugins: [
         inject : true,
         template: './public/index.html'
     })
+   ,
+    new WriteFilePlugin(),
+    
 ],
     module: {
         rules: [

@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "node scripts/dev.js",
-    "prod": "webpack --mode production",
+    "prod": "node scripts/prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ahsan Khan",
   "license": "ISC",
   "dependencies": {
+    "fs-extra": "^7.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
   },
@@ -23,10 +24,14 @@
     "eslint": "^5.4.0",
     "eslint-loader": "^2.1.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
     "style-loader": "^0.21.0",
-    "webpack": "^4.16.0",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.17.1",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "write-file-webpack-plugin": "^4.3.2"
   }
 }
