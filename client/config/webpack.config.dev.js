@@ -1,14 +1,17 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const fs = require('fs')
 
+const appDirectory = fs.realpathSync(process.cwd());
 
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
     mode : 'development',
     entry: './src/index.js',
-    output: { path: __dirname , filename: 'static/js/bundle.js',
-    // publicPath : '../public'
+    output: { path: path.resolve(__dirname, 'public') , filename: 'static/js/bundle.js',
+    // publicPath :'./public'
 },
 plugins: [
     new HtmlWebpackPlugin({
@@ -17,8 +20,7 @@ plugins: [
         inject : true,
         template: './public/index.html'
     })
-   ,
-    new WriteFilePlugin(),
+
     
 ],
     module: {
@@ -31,7 +33,9 @@ plugins: [
             {
               test: /\.css$/,
               use: ["style-loader", "css-loader"]
-            }
+            },
+
+          
 
         ],
 

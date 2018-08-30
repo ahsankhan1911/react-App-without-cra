@@ -6,7 +6,7 @@ class App extends Component {
     
         return (
             <div> 
-                <img src='images/React-logo.png'/>
+                <img src='/images/React-logo.png'/>
         hello worlddddsdsdssa</div> )
     }
 }

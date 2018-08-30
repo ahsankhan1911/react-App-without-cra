@@ -16,7 +16,7 @@ require('./api/model')
 
 mongoose.connect(`mongodb://localhost/praipsDB`, { useMongoClient: true }, function (err) {
   if (err) {
-    console.log(err);
+     throw new Error(err);
   }
   else {
     console.log("MongoDB is now Connected")
@@ -30,7 +30,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
-app.use(express.static('public'));
+app.use(express.static('./client/build'));
 
 app.use('/api', require('./api'));
 
