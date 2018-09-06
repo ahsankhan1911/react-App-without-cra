@@ -2,7 +2,8 @@ const config = require('../config/webpack.config.dev');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
-console.log("HELOOOO DIRRRR ",__dirname)
+const childProcess = require('child_process')
+
 const serverConfig = {
         // contentBase: path.join(__dirname, 'public'),
         compress: true,
@@ -13,7 +14,6 @@ const serverConfig = {
             '/api': 'http://localhost:5000'
           }
       };
-
 const devServer = new WebpackDevServer(webpack(config), serverConfig )
 
 
@@ -23,6 +23,16 @@ devServer.listen(serverConfig.port, 'localhost', function (error) {
         return console.log(error)
     }
     else {
-        console.log(`App is running on ${serverConfig.port}`)
+        console.log(`Electron app started`)
+        childProcess.exec('npm run electron-app', (err) => {
+            if(err) {
+                console.log(err)
+            }
+
+            else {
+              
+            }
+        })
+       
     }
 })
