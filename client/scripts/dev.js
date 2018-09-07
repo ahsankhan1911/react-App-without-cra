@@ -24,15 +24,7 @@ devServer.listen(serverConfig.port, 'localhost', function (error) {
     }
     else {
         console.log(`Electron app started`)
-        childProcess.exec('npm run electron-app', (err) => {
-            if(err) {
-                console.log(err)
-            }
-
-            else {
-              
-            }
-        })
+      
        
     }
 })
