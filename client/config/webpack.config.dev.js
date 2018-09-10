@@ -10,8 +10,11 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 module.exports = {
     mode : 'development',
     entry: './src/index.js',
-    output: { path: path.resolve(__dirname, 'public') , filename: 'static/js/bundle.js',
-    // publicPath :'./public'
+    output: { 
+        path: path.resolve(__dirname, 'public') , 
+        filename: 'static/js/bundle.js',
+    publicPath :'/',
+    pathinfo: true,
 },
 plugins: [
     new HtmlWebpackPlugin({

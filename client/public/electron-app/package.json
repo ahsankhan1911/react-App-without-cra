@@ -1,0 +1,20 @@
+{
+  "name": "Attendance Management System",
+  "version": "1.0.0",
+  "description": "React app basic setup without create-react-app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "prod": "node scripts/prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahsan Khan",
+  "license": "ISC",
+  "dependencies": {
+    "electron-is-dev": "^0.3.0",
+    "electron-packager": "^12.1.1"
+  },
+  "devDependencies": {
+    "electron": "2.0.8"
+  }
+}

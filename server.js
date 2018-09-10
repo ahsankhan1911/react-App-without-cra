@@ -13,7 +13,7 @@ var cors = require('cors');
 
 
 require('./api/model')
-
+mongoose.Promise = global.Promise
 mongoose.connect(`mongodb://localhost/praipsDB`, { useMongoClient: true }, function (err) {
   if (err) {
      throw new Error(err);
