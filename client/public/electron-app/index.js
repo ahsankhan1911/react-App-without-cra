@@ -9,7 +9,7 @@ const isDev = require('electron-is-dev');
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({simpleFullscreen: true, title : "Atendance Managemment System"});
+  mainWindow = new BrowserWindow({simpleFullscreen: true, title : "Atendance Managemment System" , icon : '/images/teamwork.png'});
   mainWindow.loadURL(isDev ? "http://localhost:3000/": `file://${path.join(__dirname, '../build/index.html')}`);
   
   mainWindow.on('closed', () => mainWindow = null);
