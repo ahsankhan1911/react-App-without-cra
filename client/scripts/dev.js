@@ -2,9 +2,15 @@ const config = require('../config/webpack.config.dev');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
-console.log("HELOOOO DIRRRR ",__dirname)
+const fs = require('fs')
+
+const appDirectory = fs.realpathSync(process.cwd());
+
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
+
 const serverConfig = {
-        // contentBase: path.join(__dirname, 'public'),
+        contentBase: resolveApp('public'),
         compress: true,
         port: 3000,
         // stats : "errors-only",

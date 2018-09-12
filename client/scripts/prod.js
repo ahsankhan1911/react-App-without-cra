@@ -4,6 +4,8 @@ const fsExtra = require('fs-extra')
 const webpack = require('webpack')
 const webpackCompiler  = require('webpack-dev-server')
 
+
+
 process.on('unhandledRejection', err => {
     throw err;
 });
@@ -15,16 +17,16 @@ console.log("Production build in process....")
 copyFiles()
 function makeBuild() {
 
-     compiler =  new webpackCompiler( webpack(config))
+     compiler =  new webpackCompiler( webpack(config), {stats:  "errors-only"})
     return new Promise((resolve, reject) => {
-        compiler.listen((err, stats) => {
+        compiler.listen((err) => {
 
             if (err) {
                 return reject(err)
             }
 
             else {
-                resolve(stats)
+              return resolve("Production build completed !")
             }
         })
 
@@ -35,7 +37,7 @@ function makeBuild() {
 
 
 makeBuild().then((result) => {
-    console.log("Production build completed !")
+    console.log(result)
 
   compiler.close()
   

@@ -5,9 +5,9 @@ class App extends Component {
     render () {
     
         return (
-            <div> 
+            <div className="App"> 
                 <img src='/images/React-logo.png'/>
-        hello worlddddsdsdssa</div> )
+        </div> );
     }
 }
 

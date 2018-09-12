@@ -2,6 +2,7 @@ const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const fs = require('fs')
+const eslintFormatter = require('./eslintFormatter')
 
 const appDirectory = fs.realpathSync(process.cwd());
 
@@ -11,7 +12,6 @@ module.exports = {
     mode : 'development',
     entry: './src/index.js',
     output: { path: path.resolve(__dirname, 'public') , filename: 'static/js/bundle.js',
-    // publicPath :'./public'
 },
 plugins: [
     new HtmlWebpackPlugin({
@@ -25,6 +25,21 @@ plugins: [
 ],
     module: {
         rules: [
+             {
+                test: /\.(js|jsx|mjs)$/,
+                enforce: 'pre',
+                use: [
+                  {
+                    options: {
+                      formatter: eslintFormatter,
+                      eslintPath: require.resolve('eslint'),
+        
+                    },
+                    loader: require.resolve('eslint-loader'),
+                  },
+                ],
+                include: resolveApp('src'),
+              },
             {
                 test: /\.(js|jsx)$/, // include .jsx files
                 exclude: /node_modules/, // exclude any and all files in the node_modules folder
