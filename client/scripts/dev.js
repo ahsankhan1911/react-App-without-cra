@@ -15,9 +15,6 @@ const serverConfig = {
         port: 3000,
         // stats : "errors-only",
         open: true,
-        proxy: {
-            '/api': 'http://localhost:5000'
-          }
       };
 
 const devServer = new WebpackDevServer(webpack(config), serverConfig )

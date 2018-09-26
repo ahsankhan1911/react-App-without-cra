@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('Users')
+var Users = mongoose.model('Users')
 
 
 exports.getUsers = (req, res) => {
-    Users.find({}, (err, data) => {
+
+  Users.find({}, (err, data) => {
   
       if (!data) {
         res.send(false)

@@ -10,20 +10,26 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+//If there is a .env file so it will read PORT variable if not then 5000
+const PORT = process.env.PORT || 5000
+
+//To avoid that stupid deprecated warning
+mongoose.Promise = global.Promise;
 
 require('./api/model')
 
-// mongoose.connect(`mongodb://localhost/praipsDB`, { useMongoClient: true }, function (err) {
-//   if (err) {
-//      throw new Error(err);
-//   }
-//   else {
-//     console.log("MongoDB is now Connected")
-//   }
-// });
+//YourDBName is a Database name you dont need to create it will automatically creates a DB
+mongoose.connect(`mongodb://localhost/YourDBName`, { useMongoClient: true }, function (err) {
+  if (err) {
+     throw new Error(err);
+  }
+  else {
+    console.log("MongoDB is now Connected")
+  }
+});
 
 
-//We will be connection the express REST APIs with our front end so we need CORS config for it
+//We will be connecting the express REST APIs with our front end so we need CORS config for it
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -46,7 +52,7 @@ app.use(express.static('./client/build'));
 app.use('/api', require('./api'));
 
 
-app.listen(process.env.PORT || 5000,function () {
+app.listen(PORT,function () {
   
-  console.log('Running server on ' + process.env.PORT);
+  console.log('Running server on ' + PORT);
 });
