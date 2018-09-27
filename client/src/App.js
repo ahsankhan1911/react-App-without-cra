@@ -1,31 +1,51 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 
 class App extends Component {
-    state = {
-        users: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            users: []
+        };
     }
-    componentWillMount () {
-       
-        fetch(`http://localhost:5000/api/getUsers`).then( (response) => {
-           response.json().then(data => {
-               this.setState({
-                   users : data
-               })
-           })
-        })
+    componentWillMount() {
+
+        fetch(`http://localhost:5000/api/getUsers`).then((response) => {
+            response.json().then(data => {
+                this.setState({
+                    users: data
+                });
+            });
+        });
 
     }
-    render () {
-    
+    render() {
+
         return (
-            <div className="App"> 
-                <img src='/images/React-logo.png'/>
+            <div className="App">
+                <img src='/images/React-logo.png' />
+                <h2>Dummy Data from Server</h2>
+                <table>
+                    <tr>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                    {this.state.users.map(((d, i) => {
 
-                {/* {this.state.users.map( d => {
-                    return <div>{d.email}</div>
-                })} */}
-        </div> );
+                        return (
+                            <tr key={i}>
+                                <td>{d.email}</td>
+                                <td>{d.username}</td>
+                                <td>{d.password}</td>
+                            </tr>
+
+                        );
+                    }))}
+                </table>
+            </div>
+
+        );
     }
 }
 
