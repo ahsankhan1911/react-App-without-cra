@@ -23,7 +23,7 @@ class App extends Component {
 
         return (
             <div className="App">
-                <img src='/images/React-logo.png' />
+                <img src='/images/MERN-logo.png' />
                 <h2>Dummy Data from Server</h2>
                 <table>
                     <tr>
