@@ -11,6 +11,10 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 module.exports = {
     mode : 'development',
     entry: './src/index.js',
+    watch : false,
+    watchOptions: {
+        ignored: /node_modules/
+      },
     output: { path: path.resolve(__dirname, 'public') , filename: 'static/js/bundle.js',
 },
 plugins: [

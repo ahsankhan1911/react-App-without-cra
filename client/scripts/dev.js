@@ -15,6 +15,7 @@ const serverConfig = {
         port: 3000,
         // stats : "errors-only",
         open: true,
+        watchContentBase: true
       };
 
 const devServer = new WebpackDevServer(webpack(config), serverConfig )
