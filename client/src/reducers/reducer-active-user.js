@@ -1,8 +1,9 @@
 export default function (state = null, action) {
 
-    switch(action.payload) {
-        case 'User_Selected':
+    switch(action.type) {
+        case 'USER_SELECTED':
            return action.payload;
+           break;
     }
 
     return state;

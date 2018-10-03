@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 class UserDetails extends Component {
     render() {
+        console.log("User details",this.props);
         return (
            
                 this.props.user ?   <div> <img src={this.props.user.thumbnail}/>
@@ -17,7 +18,7 @@ class UserDetails extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.ativeUser
+        user: state.activeUser
     };
 }
 
