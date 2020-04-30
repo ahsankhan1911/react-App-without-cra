@@ -10,7 +10,7 @@ class App extends Component {
     }
     componentWillMount() {
 
-        fetch(`http://localhost:5000/api/getUsers`).then((response) => {
+        fetch(`/api/getUsers`).then((response) => {
             response.json().then(data => {
                 this.setState({
                     users: data
