@@ -19,7 +19,7 @@ mongoose.Promise = global.Promise;
 require('./api/model')
 
 //YourDBName is a Database name you dont need to create it will automatically creates a DB
-mongoose.connect(`mongodb://localhost/YourDBName`, { useMongoClient: true }, function (err) {
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/YourDBName`, { useMongoClient: true }, function (err) {
   if (err) {
      throw new Error(err);
   }
